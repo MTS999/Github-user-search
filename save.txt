@@ -1,0 +1,52 @@
+import React from 'react'
+import { useEffect } from "react"
+
+import './App.css'
+import Header from "./Componenet/Header"
+import GetInfo from './Componenet/GetInfo'
+import UserInput from './Componenet/UserInput'
+function App() {
+
+  const [user,setUser]=React.useState("")
+   console.log(` ${user}`)
+  function handleUserName(id){
+    setUser(id)
+  }
+
+
+
+  useEffect(()=>{
+    async function mts(){
+        // console.log("sdf")
+        // const res=await  fetch("https://api.github.com/users/MTS999")
+        // const res=await  fetch("https://api.github.com/users/MTS999/repos")
+        const res=await  fetch(`https://api.github.com/users/${user}`)
+        const data=await res.json()
+        console.log(data)
+        console.log(data.name)
+        console.log(data.avatar_url)
+        console.log(data.followers)
+        console.log(data.following)
+        console.log(data.public_repos)
+
+
+    }
+    mts()
+},)
+
+  return (
+    <>
+     <Header/>
+     <UserInput
+          username={handleUserName}
+
+     />
+     <GetInfo
+     username={user}
+     />
+
+    </>
+  )
+}
+
+export default App

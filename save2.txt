@@ -1,0 +1,94 @@
+import React from 'react'
+import { useEffect } from "react"
+// import {githubUsers} from "./Data"
+import data from "./Data"
+import './App.css'
+import Header from "./Componenet/Header"
+import GetInfo from './Componenet/GetInfo'
+import UserInput from './Componenet/UserInput'
+function App() {
+
+  const [user,setUser]=React.useState("")
+   console.log(` ${user}`)
+  function handleUserName(id){
+    setUser(id)
+  }
+// console.log(data.items)
+
+
+const extractedData = data.items.map(mts => {
+  return {
+    <GetInfo
+    avatar_url={ mts.avatar_url},
+    followers: mts.followers_url,
+    following: mts.following_url,
+    public_repos: mts.repos_url
+
+    />
+  };
+});
+
+
+//   useEffect(()=>{
+//     async function mts(){
+//         // console.log("sdf")
+//         // const res=await  fetch("https://api.github.com/users/MTS999")
+//         // const res=await  fetch("https://api.github.com/users/MTS999/repos")
+
+//         // const token = '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'; // Replace with your actual token
+//         // const res = await fetch(`https://api.github.com/search/users?q=${user}&per_page=5`, {
+//         //     headers: {
+//         //         Authorization: `token ${token}`
+//         //     }
+//         // });
+//         const res = await fetch(`https://api.github.com/search/users?q=${user}&per_page=5`)
+
+//         const data=await res.json()
+//         // console.log(data)
+
+//       //   const cards = data.items.map(item => {
+    
+
+//       //     return (
+//       //         <GetInfo 
+//       //             // key={item.id}
+//       //             // image={item.coverImg}
+//       //             // rating={item.stats.rating}
+//       //             // reviewCount={item.stats.reviewCount}
+//       //             // location={item.location}
+//       //             // title={item.title}
+//       //             // price={item.price}
+//       //             // openSpot={item.openSpots}
+//       //             key={item.id}
+//       //             // item={item}
+//       //             {...item}
+//       //         />
+//       //     )
+//       // }) 
+//         // console.log(data.name)
+//         // console.log(data.avatar_url)
+//         // console.log(data.followers)
+//         // console.log(data.following)
+//         // console.log(data.public_repos)
+
+
+//     }
+//     mts()
+// },)
+
+  return (
+    <>
+     <Header/>
+     <UserInput
+          username={handleUserName}
+
+     />
+     {/* <GetInfo
+     username={user}
+     /> */}
+
+    </>
+  )
+}
+
+export default App

@@ -1,0 +1,54 @@
+import PropTypes from "prop-types"
+
+import { useState, useEffect } from "react"
+
+export default function GetInfo(props) {
+    console.log(props.user)
+
+    useEffect(() => {
+        async function mts() {
+            // console.log("sdf")
+            // const res = await fetch("https://api.github.com/users/MTS999")
+            const res=await  fetch(`https://api.github.com/users/${props.user}`)
+            const data = await res.json()
+            console.log(data)
+            console.log(data.name)
+            console.log(data.avatar_url)
+            console.log(data.followers)
+            console.log(data.following)
+            console.log(data.public_repos)
+            const info = data.map(mts => {
+
+
+            <div className="info">
+                        <img src={mts.avatar_url} alt="" />
+                        <h1>{mts.followers}</h1>
+                          <h1>{mts.following}</h1>
+       
+          </div>
+
+
+                    
+            
+            })
+
+
+        }
+        mts()
+    },)
+
+
+
+    return (
+        <>
+       {info}
+        </>
+    )
+}
+
+GetInfo.propTypes = {
+    // avatar_url: PropTypes.string.isRequired,
+    // followers_url: PropTypes.string.isRequired,
+    // following_url: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+}

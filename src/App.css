@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.allUsers {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 80vh;
+    overflow-y: auto;
+
+}
+
+/* .test {
+    height: 100vh;
+    overflow-y: auto;
+} */
+
+
+.contant{
+    display: flex;
+
+}
+
+.repos {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 80vh;
+    overflow-y: auto;
+
+}

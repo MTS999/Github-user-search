@@ -1,0 +1,27 @@
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.header{
+  height: 3rem;
+  background-color: #c92828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info{
+  margin: 1rem;
+  background-color: #218d37;
+  border: 10px sold gray;
+  /* height: 100vh; 
+  overflow-y: auto;  */
+  
+}
+.info img{
+  width: 100%;
+  overflow: hidden;
+}
+

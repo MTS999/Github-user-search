@@ -1,0 +1,88 @@
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+
+export default function LikedUsers(props) {
+    const [userData, setUserData] = useState(null);
+    const [repos, setRepos] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    function handleLikeButton(event){
+      props.like(userData.login)
+      console.log(userData.login)
+
+    }
+    useEffect(() => {
+        async function fetchUserData() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${props.user}`);
+                const userData = await response.json();
+                setUserData(userData);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        }
+
+        fetchUserData();
+    }, [props.user]);
+    // console.log(userData)
+
+    const fetchRepos = async () => {
+        try {
+            const response = await fetch(`https://api.github.com/users/${props.user}/repos`);
+            const reposData = await response.json();
+            setRepos(reposData);
+            props.repo(reposData)
+
+            // console.log(reposData[0])
+            // console.log(typeof(reposData))
+            setShowModal(true); // Open the modal to display repos
+        } catch (error) {
+            console.error("Error fetching repositories:", error);
+        }
+    };
+
+  
+
+    return (
+        <>
+            {userData && (
+                <div className="info">
+                    <img src={userData.avatar_url} alt={userData.name} />
+                    <h1>{userData.name}</h1>
+                    <h1>Followers: {userData.followers}</h1>
+                    <h1>Following: {userData.following}</h1>
+                    <h1>Public Repos: {userData.public_repos}</h1>
+                    <button
+                     className="like"
+                     onClick={handleLikeButton}
+                     disabled={props.isLike}
+                    >{props.isLike? 'liked':'like'}</button>
+                    <button
+                     className="show-repo"
+                      onClick={fetchRepos}
+                      >
+                        Show Repo
+                    </button>
+                    {/* <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
+                        <h2>Repositories:</h2>
+                        <ul>
+                            {repos.map((repo) => (
+                                <li key={repo.id}>
+                                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                                        {repo.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                        <button onClick={handleCloseModal}>Close</button>
+                    </Modal> */}
+                </div>
+            )}
+        </>
+    );
+}
+
+LikedUsers.propTypes = {
+    user: PropTypes.string.isRequired,
+    repo: PropTypes.func.isRequired,
+   
+};
