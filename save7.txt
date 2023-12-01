@@ -1,0 +1,109 @@
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
+import Modal, { prototype } from "react-modal"; // Import react-modal
+
+export default function GetInfo(props) {
+    const token = import.meta.env.VITE_REACT_APP_API_KEY;
+
+
+    const [userData, setUserData] = useState(null);
+    const [repos, setRepos] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    function handleLikeButton(event) {
+        props.like(userData.login)
+        console.log(userData.login)
+
+    }
+    useEffect(() => {
+        async function fetchUserData() {
+            try {
+                // const response = await fetch(`https://api.github.com/users/${props.user}`);
+                // const userData = await response.json();
+                // setUserData(userData);
+
+                //  const token = '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'; // Replace with your actual token
+                const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=5`
+                    , {
+                        headers: {
+                            Authorization: `token ${token}`
+                        }
+                    }
+                );
+                const data = await res.json()
+                setUserData(data)
+                console.log(userData.items)
+
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        }
+
+        fetchUserData();
+    }, [props.user]);
+    // console.log(userData)
+
+    const fetchRepos = async () => {
+        try {
+            const response = await fetch(`https://api.github.com/users/${props.user}/repos`);
+            const reposData = await response.json();
+            props.repo(reposData)
+
+            setShowModal(true); // Open the modal to display repos
+        } catch (error) {
+            console.error("Error fetching repositories:", error);
+        }
+    };
+
+    // const handleCloseModal = () => {
+    //     setShowModal(false); // Close the modal
+    // };
+
+    return (
+        <>
+
+            {userData && userData.items.map((user) => (
+                <div key={user.id} className="info">
+                    <img src={user.avatar_url} alt={user.name} />
+                    <h1>{user.name}</h1>
+                    <h1>Followers: {user.followers}</h1>
+                    <h1>Following: {user.following}</h1>
+                    <h1>Public Repos: {user.public_repos}</h1>
+                    <button
+                        className="like"
+                        onClick={handleLikeButton}
+                        disabled={props.isLike}
+                    >{props.isLike ? 'liked' : 'like'}</button>
+                    <button
+                        className="show-repo"
+                        onClick={fetchRepos}
+                    >
+                        Show Repo
+                    </button>
+                </div>
+            ))}
+
+            {/* <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
+                        <h2>Repositories:</h2>
+                        <ul>
+                            {repos.map((repo) => (
+                                <li key={repo.id}>
+                                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                                        {repo.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                        <button onClick={handleCloseModal}>Close</button>
+                    </Modal> */}
+
+
+        </>
+    );
+}
+
+GetInfo.propTypes = {
+    user: PropTypes.string.isRequired,
+    repo: PropTypes.func.isRequired,
+    like: PropTypes.func.isRequired,
+    isLike: PropTypes.bool.isRequired,
+};

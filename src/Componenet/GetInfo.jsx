@@ -1,82 +1,80 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import Modal, { prototype } from "react-modal"; // Import react-modal
 
 export default function GetInfo(props) {
-    const [userData, setUserData] = useState(null);
-    const [repos, setRepos] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    function handleLikeButton(event){
-      props.like(userData.login)
-      console.log(userData.login)
+    const token = import.meta.env.VITE_REACT_APP_API_KEY;
 
-    }
+    const [userData, setUserData] = useState(null);
+    // const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         async function fetchUserData() {
-            try {
-                const response = await fetch(`https://api.github.com/users/${props.user}`);
-                const userData = await response.json();
-                setUserData(userData);
+            try {                        
+                //https://api.github.com/search/users?q=${props.user}&per_page=5`
+
+            const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=10`, {
+                headers: {
+                    Authorization: `token ${token}`
+                }
+            });
+            
+                const data = await res.json();
+                setUserData(data);
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
         }
 
         fetchUserData();
-    }, [props.user]);
-    // console.log(userData)
+    }, [props.user, token]);
 
-    const fetchRepos = async () => {
+    const fetchRepos = async (mts) => {
         try {
-            const response = await fetch(`https://api.github.com/users/${props.user}/repos`);
+
+            // const response = await fetch(`https://api.github.com/users/${mts}/repos`);
+            const response = await fetch(`https://api.github.com/users/${mts}/repos`);
             const reposData = await response.json();
-            // setRepos(reposData);
             props.repo(reposData)
-            // console.log(reposData[0])
-            // console.log(typeof(reposData))
-            setShowModal(true); // Open the modal to display repos
+            // Handle the fetched repositories (e.g., setRepos(reposData))
         } catch (error) {
             console.error("Error fetching repositories:", error);
         }
     };
 
-    // const handleCloseModal = () => {
-    //     setShowModal(false); // Close the modal
-    // };
+    const handleLikeButton = (userLogin) => {
+        props.like(userLogin);
+        // console.log(userLogin);
+    };
+
 
     return (
         <>
-            {userData && (
-                <div className="info">
-                    <img src={userData.avatar_url} alt={userData.name} />
-                    <h1>{userData.name}</h1>
-                    <h1>Followers: {userData.followers}</h1>
-                    <h1>Following: {userData.following}</h1>
-                    <h1>Public Repos: {userData.public_repos}</h1>
-                    <button
-                     className="like"
-                     onClick={handleLikeButton}
-                     disabled={props.isLike}
-                    >{props.isLike? 'liked':'like'}</button>
-                    <button
-                     className="show-repo"
-                      onClick={fetchRepos}
-                      >
-                        Show Repo
-                    </button>
-                    {/* <Modal isOpen={showModal} onRequestClose={handleCloseModal}>
-                        <h2>Repositories:</h2>
-                        <ul>
-                            {repos.map((repo) => (
-                                <li key={repo.id}>
-                                    <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-                                        {repo.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={handleCloseModal}>Close</button>
-                    </Modal> */}
+            {userData && userData.items && userData.items.length > 0 && (
+                <div>
+                    {userData.items.map((user) => (
+                        <div key={user.id} className="info">
+                            <img src={user.avatar_url} alt={user.login} />
+                            <h1>{user.login}</h1>
+                            <h1>Followers: {user.followers}</h1>
+                            <h1>Following: {user.following}</h1>
+                            <h1>Public Repos: {user.public_repos}</h1>
+                            <button
+                                className="like"
+                                onClick={() => handleLikeButton(user.login)}
+                                disabled={props.liked.includes(user.login)}
+                            >
+                                {props.liked.includes(user.login) ? 'liked' : 'like'}
+
+                                {/* {props.isLike ? 'liked' : 'like'} */}
+                            </button>
+                            <button
+                                className="show-repo"
+                                onClick={() => fetchRepos(user.login)}
+                            >
+                                Show Repo
+                            </button>
+                        </div>
+                    ))}
                 </div>
             )}
         </>
@@ -88,4 +86,5 @@ GetInfo.propTypes = {
     repo: PropTypes.func.isRequired,
     like: PropTypes.func.isRequired,
     isLike: PropTypes.bool.isRequired,
+    liked: PropTypes.array.isRequired,
 };

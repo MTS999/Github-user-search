@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect } from "react"
 // import {githubUsers} from "./Data"
-import data from "./Data"
 import './App.css'
 import Header from "./Componenet/Header"
 import GetInfo from './Componenet/GetInfo'
@@ -20,50 +19,50 @@ function App() {
   }
   function allrepodata(data) {
     setRepoData(data)
-    // console.log(data)
-    // console.log(typeof (data))
+  
   }
 
 
   function hanldlelike(mts) {
     setlike(prevItems => [...prevItems, mts]);
-    console.log(liked)
+    
+  }
+  // console.log(liked)
+  function handleDislike(removeitem){
+    setlike(prevArray => prevArray.filter(item => item !== removeitem));
 
   }
 
-  const users = data.items.map(mts => {
+  // const users = data.items.map(mts => {
 
-    const exists = liked.includes(mts.login
-    );
+  //   const exists = liked.includes(mts.login);
 
-    return (
-      <GetInfo
-        key={mts.id}
+  //   return (
+  //     <GetInfo
+  //       key={1}
 
-        user={mts.login}
+  //       user={user}
 
-        repo={allrepodata}
+  //       repo={allrepodata}
+      
+  //       liked={liked}
+  //       like={hanldlelike}
 
-        like={hanldlelike}
-
-        isLike={exists}
+  //       // isLike={exists}
 
 
 
-      />
-    )
-  })
+  //     />
+  //   )
+  // })
   const LikedUser = liked.map(mts => {
-
 
     return (
       <LikedUsers
         key={mts}
         user={mts}
         repo={allrepodata}
-
-
-
+        dislike={handleDislike}
       />
     )
   })
@@ -80,7 +79,21 @@ function App() {
 
           <div className="allUsers">
 
-            {users}
+          <GetInfo
+        key={1}
+
+        user={user}
+
+        repo={allrepodata}
+      
+        liked={liked}
+        like={hanldlelike}
+
+        // isLike={exists}
+
+
+
+      />
 
           </div>
           <div className="repos">
