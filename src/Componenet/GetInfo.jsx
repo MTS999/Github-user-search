@@ -12,7 +12,7 @@ export default function GetInfo(props) {
             try {                        
                 //https://api.github.com/search/users?q=${props.user}&per_page=5`
 
-            const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=10`, {
+            const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=3`, {
                 headers: {
                     Authorization: `token ${token}`
                 }
@@ -85,6 +85,6 @@ GetInfo.propTypes = {
     user: PropTypes.string.isRequired,
     repo: PropTypes.func.isRequired,
     like: PropTypes.func.isRequired,
-    isLike: PropTypes.bool.isRequired,
+    // isLike: PropTypes.bool.isRequired,
     liked: PropTypes.array.isRequired,
 };
