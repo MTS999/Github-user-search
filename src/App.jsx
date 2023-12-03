@@ -19,42 +19,20 @@ function App() {
   }
   function allrepodata(data) {
     setRepoData(data)
-  
+
   }
 
 
   function hanldlelike(mts) {
     setlike(prevItems => [...prevItems, mts]);
-    
+
   }
   // console.log(liked)
-  function handleDislike(removeitem){
+  function handleDislike(removeitem) {
     setlike(prevArray => prevArray.filter(item => item !== removeitem));
 
   }
 
-  // const users = data.items.map(mts => {
-
-  //   const exists = liked.includes(mts.login);
-
-  //   return (
-  //     <GetInfo
-  //       key={1}
-
-  //       user={user}
-
-  //       repo={allrepodata}
-      
-  //       liked={liked}
-  //       like={hanldlelike}
-
-  //       // isLike={exists}
-
-
-
-  //     />
-  //   )
-  // })
   const LikedUser = liked.map(mts => {
 
     return (
@@ -77,36 +55,34 @@ function App() {
         />
         <div className='contant'>
 
-          <div className="allUsers">
 
-          <GetInfo
-        key={1}
-
-        user={user}
-
-        repo={allrepodata}
-      
-        liked={liked}
-        like={hanldlelike}
-
-        // isLike={exists}
-
-
-
-      />
-
-          </div>
           <div className="repos">
             <ShowRepos
               repo={reooData}
             />
           </div>
-          <div className="repos">
+          <div className="allUsers">
 
-            {LikedUser}
+            <GetInfo
+              key={1}
+
+              user={user}
+
+              repo={allrepodata}
+
+              liked={liked}
+              like={hanldlelike}
+
+            />
+
+            
+
+
           </div>
+          <div className="liked">
 
-
+              {LikedUser}
+            </div>
         </div>
       </div>
 

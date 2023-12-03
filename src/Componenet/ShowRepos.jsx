@@ -10,7 +10,7 @@ export default function ShowRepos(props){
     return(
         <>
         <div className="repos-list">
-        <h2>Repositories:</h2>
+        {/* <h2>Repositories:</h2> */}
         <ul>
             {props.repo.map(reposs => (
                 <li key={reposs.id}>
@@ -24,7 +24,7 @@ export default function ShowRepos(props){
             }
         </ul>
     </div>
-    <h1>hujik</h1>
+    {/* <h1>hujik</h1> */}
         </>
     )
 }

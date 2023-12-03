@@ -10,30 +10,11 @@ export default function UserInput(props) {
     function handleChange(event) {
         const input_text = event.target.value
         setInput(input_text)
-         console.log(input)
     }
     function mts(){
       props.username(input)
     }
 
-    // useEffect(()=>{
-    //     async function mts(){
-    //         // console.log("sdf")
-    //         // const res=await  fetch("https://api.github.com/users/MTS9992")
-    //         // const res=await  fetch("https://api.github.com/users/MTS999/repos")
-    //         const res=await  fetch(`https://api.github.com/users/${username}`)
-    //         const data=await res.json()
-    //         console.log(data)
-    //         console.log(data.name)
-    //         console.log(data.avatar_url)
-    //         console.log(data.followers)
-    //         console.log(data.following)
-    //         console.log(data.public_repos)
-
-
-    //     }
-    //     mts()
-    // },)
 
     return (
         <nav className="header">

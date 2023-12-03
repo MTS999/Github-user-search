@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
 }
-
+/* .test{
+    display: flex;
+} */
 .allUsers {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 33%;
     height: 80vh;
     overflow-y: auto;
 
@@ -26,7 +28,15 @@
 .repos {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 33%;
+    height: 80vh;
+    overflow-y: auto;
+
+}
+.liked {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
     height: 80vh;
     overflow-y: auto;
 

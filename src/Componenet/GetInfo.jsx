@@ -4,22 +4,24 @@ import { useState, useEffect } from "react";
 export default function GetInfo(props) {
     const token = import.meta.env.VITE_REACT_APP_API_KEY;
 
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState([]);
+    const [username, setUsername] = useState([]);
     // const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         async function fetchUserData() {
-            try {                        
-                //https://api.github.com/search/users?q=${props.user}&per_page=5`
+            try {
+                const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=3`
+                    , {
+                        header: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
 
-            const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=3`, {
-                headers: {
-                    Authorization: `token ${token}`
-                }
-            });
-            
                 const data = await res.json();
-                setUserData(data);
+                setUsername(data.items);
+
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
@@ -28,11 +30,50 @@ export default function GetInfo(props) {
         fetchUserData();
     }, [props.user, token]);
 
+
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            if (username && Array.isArray(username)) {
+                try {
+                    const fetchedData = await Promise.all(username.map(async (element) => {
+                        const response = await fetch(`https://api.github.com/users/${element.login}`
+                        , {
+                            header: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        }
+                    );
+                        
+                        return response.json();
+                    }));
+                    setUserData(fetchedData);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            } 
+        };
+
+        fetchData();
+    }, [username]);
+    
+
+    
+    
+    
+    
     const fetchRepos = async (mts) => {
         try {
-
+            
             // const response = await fetch(`https://api.github.com/users/${mts}/repos`);
-            const response = await fetch(`https://api.github.com/users/${mts}/repos`);
+            const response = await fetch(`https://api.github.com/users/${mts}/repos`
+            , {
+                header: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
             const reposData = await response.json();
             props.repo(reposData)
             // Handle the fetched repositories (e.g., setRepos(reposData))
@@ -43,15 +84,15 @@ export default function GetInfo(props) {
 
     const handleLikeButton = (userLogin) => {
         props.like(userLogin);
-        // console.log(userLogin);
     };
-
+    
+    // console.log(userData)
 
     return (
         <>
-            {userData && userData.items && userData.items.length > 0 && (
+            { userData && userData.length > 0 && (
                 <div>
-                    {userData.items.map((user) => (
+                    {userData.map((user) => (
                         <div key={user.id} className="info">
                             <img src={user.avatar_url} alt={user.login} />
                             <h1>{user.login}</h1>

@@ -12,6 +12,7 @@ export default function LikedUsers(props) {
                 const response = await fetch(`https://api.github.com/users/${props.user}`);
                 const userData = await response.json();
                 setUserData(userData);
+                console.log(userData)
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
