@@ -17,7 +17,7 @@ export default function UserInput(props) {
 
 
     return (
-        <nav className="header">
+        <nav className="input">
             <input
                 type="text"
                 placeholder="enter username"
@@ -25,7 +25,7 @@ export default function UserInput(props) {
                 onChange={ handleChange}
 
             />
-            <button className="btn" onClick={mts}>Search</button>
+            <button className="serch-btn" onClick={mts}>Search</button>
         </nav>
     )
 }

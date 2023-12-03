@@ -8,16 +8,13 @@
 .allUsers {
     display: flex;
     flex-direction: column;
-    width: 33%;
+    
     height: 80vh;
     overflow-y: auto;
 
 }
 
-/* .test {
-    height: 100vh;
-    overflow-y: auto;
-} */
+
 
 
 .contant{

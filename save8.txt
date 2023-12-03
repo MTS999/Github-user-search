@@ -1,18 +1,12 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import Modal from "react-modal"; // Import react-modal
-
 
 export default function GetInfo(props) {
     const token = import.meta.env.VITE_REACT_APP_API_KEY;
 
     const [userData, setUserData] = useState([]);
     const [username, setUsername] = useState([]);
-    const [repos, setRepos] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [selectedUserRepos, setSelectedUserRepos] = useState([]);
-    const [showRepoBtn, setShowRepoBtn] = useState(false);
-
+    // const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         async function fetchUserData() {
@@ -61,7 +55,7 @@ export default function GetInfo(props) {
         };
 
         fetchData();
-    }, [username, token]);
+    }, [username]);
 
 
 
@@ -69,44 +63,25 @@ export default function GetInfo(props) {
 
 
     const fetchRepos = async (mts) => {
+        try {
 
-        if (props.extrarepo.length && mts === props.extrarepo[0].owner.login) {
-            props.repo([])
-
-        }
-        else {
-
-            try {
-
-                const response = await fetch(`https://api.github.com/users/${mts}/repos`
-                    , {
-                        header: {
-                            Authorization: `Bearer ${token}`
-                        }
+            // const response = await fetch(`https://api.github.com/users/${mts}/repos`);
+            const response = await fetch(`https://api.github.com/users/${mts}/repos`
+                , {
+                    header: {
+                        Authorization: `Bearer ${token}`
                     }
-                );
+                }
+            );
 
-                const reposData = await response.json();
-                props.repo(reposData)
-                setShowRepoBtn(pre => !pre)
-
-                { showRepoBtn ? setRepos(reposData) : null }
-
-                setRepos(reposData);
-                setShowModal(true);
-                setSelectedUserRepos(reposData);
-            } catch (error) {
-                console.error("Error fetching repositories:", error);
-            }
+            const reposData = await response.json();
+            props.repo(reposData)
+            // Handle the fetched repositories (e.g., setRepos(reposData))
+        } catch (error) {
+            console.error("Error fetching repositories:", error);
         }
     };
-    if (props.extrarepo.length > 0) {
 
-        console.log(props.extrarepo[0].owner.login)
-    }
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
     const handleLikeButton = (userLogin) => {
         props.like(userLogin);
     };
@@ -141,23 +116,17 @@ export default function GetInfo(props) {
 
                                     {/* {props.isLike ? 'liked' : 'like'} */}
                                 </button>
-                                <button
-                                    className="show-repo"
-                                    onClick={() => fetchRepos(user.login)}
+                            <button
+                                className="show-repo"
+                                onClick={() => fetchRepos(user.login)}
                                 >
-
-                                    {props.extrarepo.length > 0 && props.extrarepo[0].owner.login === user.login
-                                        ? "hide" : "show"}
-                                    {/* {!showRepoBtn? "show":"hide"} */}
-                                </button>
-
-                            </div>
+                                Show Repo
+                            </button>
+                                </div>
                         </div>
                     ))}
                 </div>
             )}
-
-
         </>
     );
 }
@@ -166,6 +135,6 @@ GetInfo.propTypes = {
     user: PropTypes.string.isRequired,
     repo: PropTypes.func.isRequired,
     like: PropTypes.func.isRequired,
+    // isLike: PropTypes.bool.isRequired,
     liked: PropTypes.array.isRequired,
-    extrarepo: PropTypes.array.isRequired
 };

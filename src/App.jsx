@@ -21,6 +21,7 @@ function App() {
     setRepoData(data)
 
   }
+  console.log(reooData)
 
 
   function hanldlelike(mts) {
@@ -70,7 +71,10 @@ function App() {
 
               repo={allrepodata}
 
+             extrarepo={reooData}
+
               liked={liked}
+
               like={hanldlelike}
 
             />
