@@ -65,7 +65,7 @@
 
 
 /* Styles for the modal */
-.customModal {
+/* .customModal {
   width: 33%;
   margin: auto;
   border: 1px solid #ccc;
@@ -75,7 +75,7 @@
 
 .overlayCustom {
   background-color: rgba(0, 0, 0, 0.5);
-}
+} */
 
 
 
@@ -137,7 +137,7 @@ button:hover {
 }
 
 .liked {
-  background-color: #28a745;
+  /* background-color: #28a745; */
 }
 
 .liked:hover {

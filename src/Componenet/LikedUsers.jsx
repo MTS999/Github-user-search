@@ -44,7 +44,7 @@ export default function LikedUsers(props) {
                     <h1>Public Repos: {userData.public_repos}</h1>
                     <button
                         className="like"
-                        onClick={() =>  props.dislike(userData.login)}                    >unlike3</button>
+                        onClick={() => props.dislike(userData.login)}>unlike3</button>
                     <button
                         className="show-repo"
                         onClick={fetchRepos}

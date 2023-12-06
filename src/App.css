@@ -2,23 +2,19 @@
     margin: 0;
     padding: 0;
 }
+
 /* .test{
     display: flex;
 } */
-.allUsers {
+
+
+
+
+
+
+.contant {
     display: flex;
-    flex-direction: column;
-    
-    height: 80vh;
-    overflow-y: auto;
-
-}
-
-
-
-
-.contant{
-    display: flex;
+    background-color: #a72424;
 
 }
 
@@ -30,6 +26,18 @@
     overflow-y: auto;
 
 }
+
+.allUsers {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(133, 35, 35);
+
+
+    height: 80vh;
+    overflow-y: auto;
+
+}
+
 .liked {
     display: flex;
     flex-direction: column;

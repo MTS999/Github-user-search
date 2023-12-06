@@ -71,7 +71,7 @@ function App() {
 
               repo={allrepodata}
 
-             extrarepo={reooData}
+              extrarepo={reooData}
 
               liked={liked}
 
@@ -79,14 +79,14 @@ function App() {
 
             />
 
-            
+
 
 
           </div>
           <div className="liked">
 
-              {LikedUser}
-            </div>
+            {LikedUser}
+          </div>
         </div>
       </div>
 
