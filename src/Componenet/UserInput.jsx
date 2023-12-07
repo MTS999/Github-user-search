@@ -1,7 +1,6 @@
 // import image from "../images/troll-face.png"
 import PropTypes from "prop-types"
 import React from "react"
-import { useState,useEffect } from "react"
 export default function UserInput(props) {
 
     const [input, setInput] = React.useState("")

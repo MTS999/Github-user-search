@@ -1,6 +1,4 @@
 import React from 'react'
-import { useEffect } from "react"
-// import {githubUsers} from "./Data"
 import './App.css'
 import Header from "./Componenet/Header"
 import GetInfo from './Componenet/GetInfo'
@@ -12,6 +10,7 @@ function App() {
   const [user, setUser] = React.useState("")
   const [reooData, setRepoData] = React.useState([])
   const [liked, setlike] = React.useState([])
+  const [likebutton, setLikebutton] = React.useState(false)
 
 
   function handleUserName(id) {
@@ -21,19 +20,21 @@ function App() {
     setRepoData(data)
 
   }
-  console.log(reooData)
 
 
   function hanldlelike(mts) {
     setlike(prevItems => [...prevItems, mts]);
 
   }
-  // console.log(liked)
   function handleDislike(removeitem) {
     setlike(prevArray => prevArray.filter(item => item !== removeitem));
 
   }
 
+  function handlelikebutton() {
+    setLikebutton(prevItems => !prevItems);
+
+  }
   const LikedUser = liked.map(mts => {
 
     return (
@@ -49,22 +50,21 @@ function App() {
   return (
     <>
       <div className="test">
-        <Header />
-        <UserInput
-          username={handleUserName}
+        <div className="repos">
+          <ShowRepos
+            repo={reooData}
+          />
+        </div>
+        <div className="main_container">
 
-        />
-        <div className='contant'>
+          <Header />
+          <UserInput
+            username={handleUserName}
 
-
-          <div className="repos">
-            <ShowRepos
-              repo={reooData}
-            />
-          </div>
+          />
           <div className="allUsers">
 
-            <GetInfo
+            {user.length > 0 && <GetInfo
               key={1}
 
               user={user}
@@ -77,17 +77,31 @@ function App() {
 
               like={hanldlelike}
 
-            />
+            />}
 
-
-
-
-          </div>
-          <div className="liked">
-
-            {LikedUser}
           </div>
         </div>
+        <div className="liked">
+          {liked.length > 0 &&
+            <div className='box'>
+              <button
+                className='likebutton'
+                onClick={handlelikebutton}
+              >
+                liked profiles
+              </button>
+              {likebutton &&
+
+                <div className="like-component">
+
+                {likebutton && LikedUser}
+
+              </div>
+              }
+            </div>
+          }
+        </div>
+
       </div>
 
     </>
@@ -95,3 +109,5 @@ function App() {
 }
 
 export default App
+
+

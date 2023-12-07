@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function LikedUsers(props) {
     const [userData, setUserData] = useState(null);
-    const [repos, setRepos] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+
 
     useEffect(() => {
         async function fetchUserData() {
@@ -12,7 +11,6 @@ export default function LikedUsers(props) {
                 const response = await fetch(`https://api.github.com/users/${props.user}`);
                 const userData = await response.json();
                 setUserData(userData);
-                console.log(userData)
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
@@ -27,7 +25,6 @@ export default function LikedUsers(props) {
             const reposData = await response.json();
             props.repo(reposData)
 
-            setShowModal(true); // Open the modal to display repos
         } catch (error) {
             console.error("Error fetching repositories:", error);
         }
@@ -37,20 +34,33 @@ export default function LikedUsers(props) {
         <>
             {userData && (
                 <div className="info">
-                    <img src={userData.avatar_url} alt={userData.name} />
-                    <h1>{userData.login}</h1>
-                    <h1>Followers: {userData.followers}</h1>
-                    <h1>Following: {userData.following}</h1>
-                    <h1>Public Repos: {userData.public_repos}</h1>
-                    <button
-                        className="like"
-                        onClick={() => props.dislike(userData.login)}>unlike3</button>
-                    <button
-                        className="show-repo"
-                        onClick={fetchRepos}
-                    >
-                        Show Repo
-                    </button>
+                    {/* <img src={userData.avatar_url} alt={userData.name} /> */}
+                    <div className="profile-img">
+
+                        <img src={userData.avatar_url} alt={userData.login} />
+                    </div>
+                    <div className="profile-info">
+
+                        <h3>{userData.login}</h3>
+                        <span>
+                            Followers: {userData.followers}
+                        </span>
+                        <span>
+                            Following: {userData.following}                                </span>
+                        <h3>Public Repos: {userData.public_repos}</h3>
+                        <button
+                            className="like"
+                            onClick={() => props.dislike(userData.login)}>Remove</button>
+                        <button
+                            className="show-repo"
+                            onClick={fetchRepos}
+                        >
+                            Show Repo
+                        </button>
+
+                    </div>
+                  
+
 
                 </div>
             )}

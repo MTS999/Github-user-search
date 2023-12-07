@@ -4,23 +4,21 @@ import PropTypes from "prop-types"
 export default function ShowRepos(props) {
 
 
-    // console.log(typeof(props.repo))
-    // console.log(props.repo)
 
     return (
         <>
             <div className="repos-list">
                 {props.repo.length > 0 && (
-                    <h2>Repositories:</h2>
+                    <h1>Repositories:</h1>
                 )}
                 <ul>
 
 
                     {props.repo.map(reposs => (
                         <li key={reposs.id}>
-                            <h1>{reposs.full_name}</h1>
+                            <h2>{reposs.full_name}</h2>
                             <a href={reposs.html_url} target="_blank" rel="noopener noreferrer">
-                                {reposs.name}
+                                {reposs.html_url}
                             </a>
                         </li>
                     ))
@@ -28,7 +26,6 @@ export default function ShowRepos(props) {
                     }
                 </ul>
             </div>
-            {/* <h1>hujik</h1> */}
         </>
     )
 }

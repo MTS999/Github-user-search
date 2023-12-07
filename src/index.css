@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tomorrow&display=swap');
+
+
+
+
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Inter', sans-serif;
+
   /* background-color: black; */
   /* color: white; */
 }
 
+
+
+
 .header {
   height: 3rem;
-  color: #7d5bed;
+  /* color: #7d5bed; */
+  color:   #007bff;
+  ;
   /* background-color: #c92828; */
   display: flex;
   align-items: center;
@@ -24,14 +36,25 @@
 }
 
 .user-input {
+  margin-top: 4px;
+  padding: 8px;
   width: 320px;
+  border-radius: 5px;
+  border-color: white;
 
 }
+.serch-btn{
+  margin-bottom:10px ;
+}
+
+
 
 .info {
   margin: 1rem;
-  /* background-color: #218d37; */
-  border: 10px sold gray;
+
+  border-radius: 10px;
+  background-color: #fff;
+  width: 340px;
 
 }
 
@@ -64,41 +87,7 @@
 
 
 
-/* Styles for the modal */
-/* .customModal {
-  width: 33%;
-  margin: auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-}
 
-.overlayCustom {
-  background-color: rgba(0, 0, 0, 0.5);
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.info-card {
-  display: flex;
-  align-items: center;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
 
 .profile-img img {
   width: 100px;
@@ -136,10 +125,40 @@ button:hover {
   background-color: #0056b3;
 }
 
-.liked {
-  /* background-color: #28a745; */
+
+
+
+.repos-list h1{
+  background-color: #007bff;
+  font-size: 34px;
+  text-indent: 10px;
+  margin-bottom: 30px;
+
+
 }
 
-.liked:hover {
-  background-color: #218838;
+.repos-list{
+  margin-left: 5px;
+}
+.repos-list ul{
+  margin-left: 10px;
+
+}
+
+.repos-list ul li h1{
+  margin-left: 10px;
+
+  margin-bottom: 5px;
+  word-wrap: break-word; 
+
+}
+.repos-list ul li a{
+  margin-left: 10px;
+
+  word-wrap: break-word; 
+  font-size: 22px;
+}
+.repos-list ul li{
+   margin-bottom: 30px;
+   text-decoration: none;
 }

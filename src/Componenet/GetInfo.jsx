@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import Modal from "react-modal"; // Import react-modal
 
 
 export default function GetInfo(props) {
@@ -8,16 +7,13 @@ export default function GetInfo(props) {
 
     const [userData, setUserData] = useState([]);
     const [username, setUsername] = useState([]);
-    const [repos, setRepos] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [selectedUserRepos, setSelectedUserRepos] = useState([]);
-    const [showRepoBtn, setShowRepoBtn] = useState(false);
+    
 
 
     useEffect(() => {
         async function fetchUserData() {
             try {
-                const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=5`
+                const res = await fetch(`https://api.github.com/search/users?q=${props.user}&per_page=15`
                     , {
                         header: {
                             Authorization: `Bearer ${token}`
@@ -88,13 +84,9 @@ export default function GetInfo(props) {
 
                 const reposData = await response.json();
                 props.repo(reposData)
-                setShowRepoBtn(pre => !pre)
 
-                { showRepoBtn ? setRepos(reposData) : null }
 
-                setRepos(reposData);
-                setShowModal(true);
-                setSelectedUserRepos(reposData);
+               
             } catch (error) {
                 console.error("Error fetching repositories:", error);
             }
@@ -104,14 +96,11 @@ export default function GetInfo(props) {
 
         console.log(props.extrarepo[0].owner.login)
     }
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+ 
     const handleLikeButton = (userLogin) => {
         props.like(userLogin);
     };
 
-    // console.log(userData)
 
     return (
         <>
@@ -125,13 +114,13 @@ export default function GetInfo(props) {
                             </div>
                             <div className="profile-info">
 
-                                <h1>{user.login}</h1>
+                                <h3>{user.login}</h3>
                                 <span>
                                     Followers: {user.followers}
                                 </span>
                                 <span>
                                     Following: {user.following}                                </span>
-                                <h1>Public Repos: {user.public_repos}</h1>
+                                <h3>Public Repos: {user.public_repos}</h3>
                                 <button
                                     className="like"
                                     onClick={() => handleLikeButton(user.login)}
@@ -139,7 +128,6 @@ export default function GetInfo(props) {
                                 >
                                     {props.liked.includes(user.login) ? 'liked' : 'like'}
 
-                                    {/* {props.isLike ? 'liked' : 'like'} */}
                                 </button>
                                 <button
                                     className="show-repo"
@@ -148,7 +136,6 @@ export default function GetInfo(props) {
 
                                     {props.extrarepo.length > 0 && props.extrarepo[0].owner.login === user.login
                                         ? "hide" : "show"}
-                                    {/* {!showRepoBtn? "show":"hide"} */}
                                 </button>
 
                             </div>
