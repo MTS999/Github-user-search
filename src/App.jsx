@@ -58,7 +58,7 @@ function App() {
         {likebutton &&
 
           <div className="liked-data">
-            <h1>liked users</h1>
+            <h1>Liked users</h1>
 
             {LikedUser}
           </div>

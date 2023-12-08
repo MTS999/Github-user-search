@@ -1,10 +1,8 @@
-// import image from "../images/troll-face.png"
 import PropTypes from "prop-types"
 import React from "react"
 export default function UserInput(props) {
 
     const [input, setInput] = React.useState("")
-    // const [input, setInput] = React.useState("")
 
     function handleChange(event) {
         const input_text = event.target.value
@@ -19,7 +17,7 @@ export default function UserInput(props) {
         <nav className="input">
             <input
                 type="text"
-                placeholder="enter username"
+                placeholder="Enter username"
                 className="user-input"
                 onChange={ handleChange}
 

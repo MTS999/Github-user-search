@@ -8,6 +8,7 @@ export default function GetInfo(props) {
     const [userData, setUserData] = useState([]);
     const [username, setUsername] = useState([]);
 
+    console.log(userData)
 
 
     useEffect(() => {
@@ -114,13 +115,17 @@ export default function GetInfo(props) {
                             </div>
                             <div className="profile-info">
 
-                                <h3>{user.login}</h3>
+                                <a className="profile-link"
+                                 target="__blank"  
+                                    href={user.html_url}
+
+                                ><h3>{user.login}</h3></a>
                                 <span>
                                     Followers: {user.followers}
                                 </span>
                                 <span>
                                     Following: {user.following}                                </span>
-                                <h3>Public Repos: {user.public_repos}</h3>
+                                <h3>Public repositories: {user.public_repos}</h3>
                                 <button
                                     className="like"
                                     onClick={() => handleLikeButton(user.login)}
@@ -135,7 +140,7 @@ export default function GetInfo(props) {
                                 >
 
                                     {props.extrarepo.length > 0 && props.extrarepo[0].owner.login === user.login
-                                        ? "hide" : "show"}
+                                        ? "hide repositories" : "show repositories"}
                                 </button>
 
                             </div>

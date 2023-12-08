@@ -10,13 +10,16 @@
   flex-direction: column;
 }
 
+.user-input{
+  padding: 5px;
+  font-size: 15px;
 
+}
 
 .info{
   margin: 1rem;
 
   border-radius: 10px;
-  /* background-color: #fff; */
   background-color: #363636;
     border: 2px solid #d6d6d6;
   width: 340px;
@@ -65,6 +68,13 @@
   flex: 1;
 }
 
+.profile-link{
+  /* font-size: 80px; */
+  text-decoration: none;
+  color: white;
+}
+
+
 h2 {
   font-size: 24px;
   margin-bottom: 8px;
@@ -86,7 +96,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: darkblue;
 }
 
 

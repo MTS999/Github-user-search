@@ -79,7 +79,7 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     position: fixed;
-    top: 15vh;
+    top: 10vh;
     height: 70vh;
 
     /* background-color: black; */
@@ -102,20 +102,18 @@ body::-webkit-scrollbar {
 .liked-data h1{
     background-color: #7d5bed ;
     text-indent: 20px;
+    color: white;
     
 }
 .like-btn{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.like-info{
+    color: #d6d6d6;
 }
 
 
 
-
-
-@media (max-width: 560px) {
-
-      
-      
-
-}

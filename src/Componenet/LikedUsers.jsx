@@ -40,8 +40,14 @@ export default function LikedUsers(props) {
                         <img src={userData.avatar_url} alt={userData.login} />
                     </div>
                     <div className="profile-info">
+                    <a 
+                    className="profile-link"  
+                    target="__blank"  
 
-                        <h3>{userData.login}</h3>
+                    href={userData.html_url}
+
+                    ><h3>{userData.login}</h3></a>
+
                         <span>
                             Followers: {userData.followers}
                         </span>
