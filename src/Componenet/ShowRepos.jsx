@@ -3,28 +3,46 @@ import PropTypes from "prop-types"
 
 export default function ShowRepos(props) {
 
-
+    function removerepodata() {
+        props.removeallrepodata(2)
+    }
 
     return (
         <>
             <div className="repos-list">
-                {props.repo.length > 0 && (
+
+                <div className="repohead">
+
                     <h1>Repositories:</h1>
-                )}
-                <ul>
+                    <button
+                        className="close-btn" y
+                        onClick={removerepodata}
+                    >
+                        close
+                    </button>
+                </div>
+
+                <div className="repo-data">
+
+                    <ul>
 
 
-                    {props.repo.map(reposs => (
-                        <li key={reposs.id}>
-                            <h2>{reposs.full_name}</h2>
-                            <a href={reposs.html_url} target="_blank" rel="noopener noreferrer">
-                                {reposs.html_url}
-                            </a>
-                        </li>
-                    ))
+                        {props.repo.map(reposs => (
 
-                    }
-                </ul>
+                            <li key={reposs.id}>
+                                <div className="mts">
+                                    <h3>{reposs.full_name}</h3>
+                                    <a className="repo-link" href={reposs.html_url} target="_blank" rel="noopener noreferrer">
+                                        {reposs.html_url}
+                                    </a>
+                                </div>
+                            </li>
+                        ))
+
+                        }
+                    </ul>
+                </div>
+
             </div>
         </>
     )
@@ -35,5 +53,10 @@ export default function ShowRepos(props) {
 
 
 ShowRepos.propTypes = {
-    repo: PropTypes.array.isRequired
+    repo: PropTypes.array.isRequired,
+    removeallrepodata: PropTypes.func.isRequired,
+
 }
+
+
+

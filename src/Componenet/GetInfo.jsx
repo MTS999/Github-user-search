@@ -7,7 +7,7 @@ export default function GetInfo(props) {
 
     const [userData, setUserData] = useState([]);
     const [username, setUsername] = useState([]);
-    
+
 
 
     useEffect(() => {
@@ -86,7 +86,7 @@ export default function GetInfo(props) {
                 props.repo(reposData)
 
 
-               
+
             } catch (error) {
                 console.error("Error fetching repositories:", error);
             }
@@ -96,7 +96,7 @@ export default function GetInfo(props) {
 
         console.log(props.extrarepo[0].owner.login)
     }
- 
+
     const handleLikeButton = (userLogin) => {
         props.like(userLogin);
     };
@@ -105,7 +105,7 @@ export default function GetInfo(props) {
     return (
         <>
             {userData && userData.length > 0 && (
-                <div>
+                <div className="infocard-containor">
                     {userData.map((user) => (
                         <div key={user.id} className="info">
                             <div className="profile-img">

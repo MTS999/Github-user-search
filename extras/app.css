@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.test {
+    /* display: flex; */
+    background-color: lightgray;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    
+    width: 32%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.contant {
+    display: flex;
+
+}
+
+.repos {
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+    height: 80vh;
+    overflow-y: auto;
+    background-color: #a29f98;
+    
+
+}
+
+.repos::-webkit-scrollbar {
+    display: none;
+}
+
+.allUsers {
+    display: flex;
+    flex-direction: column;
+
+
+    height: 80vh;
+    overflow-y: auto;
+
+
+}
+
+.allUsers::-webkit-scrollbar {
+    display: none;
+}
+
+.liked {
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+    height: 80vh;
+    /* overflow-y: auto; */
+    align-items: center;
+
+}
+
+.liked::-webkit-scrollbar {
+    display: none;
+}
+
+.likebutton {
+    margin-top: 40px;
+    width: 10vw;
+    /* margin-bottom: 30px; */
+}
+
+.like-component {
+    border: 1px solid gray;
+    border-radius: 5px;
+    overflow-y: auto;
+    height: 80vh;
+    background-color: #a29f98;
+
+
+
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}

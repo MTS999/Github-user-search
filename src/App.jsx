@@ -20,6 +20,10 @@ function App() {
     setRepoData(data)
 
   }
+  function removeallrepodata() {
+    setRepoData([])
+
+  }
 
 
   function hanldlelike(mts) {
@@ -49,60 +53,64 @@ function App() {
 
   return (
     <>
-      <div className="test">
-        <div className="repos">
-          <ShowRepos
-            repo={reooData}
-          />
-        </div>
-        <div className="main_container">
+      <div className="like-containor">
+
+        {likebutton &&
+
+          <div className="liked-data">
+            <h1>liked users</h1>
+
+            {LikedUser}
+          </div>
+        }
+        <button
+          className='like-btn'
+          onClick={handlelikebutton}
+        >
+          {likebutton ? "<" : ">"}
+        </button>
+      </div>
+
+      <div className="main_container">
+        {
+          reooData.length > 0
+          &&
+          < div className="repos">
+            <ShowRepos
+              repo={reooData}
+              removeallrepodata={removeallrepodata}
+            />
+          </div>
+        }
+        <div className="navbar">
 
           <Header />
           <UserInput
             username={handleUserName}
 
           />
-          <div className="allUsers">
-
-            {user.length > 0 && <GetInfo
-              key={1}
-
-              user={user}
-
-              repo={allrepodata}
-
-              extrarepo={reooData}
-
-              liked={liked}
-
-              like={hanldlelike}
-
-            />}
-
-          </div>
         </div>
-        <div className="liked">
-          {liked.length > 0 &&
-            <div className='box'>
-              <button
-                className='likebutton'
-                onClick={handlelikebutton}
-              >
-                liked profiles
-              </button>
-              {likebutton &&
+        <div className="allUsers">
 
-                <div className="like-component">
+          {user.length > 0 && <GetInfo
+            key={1}
 
-                {likebutton && LikedUser}
+            user={user}
 
-              </div>
-              }
-            </div>
-          }
+            repo={allrepodata}
+
+            extrarepo={reooData}
+
+            liked={liked}
+
+            like={hanldlelike}
+
+          />}
+
         </div>
 
-      </div>
+
+      </div >
 
     </>
   )

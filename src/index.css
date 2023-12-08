@@ -1,61 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tomorrow&display=swap');
 
 
-
-
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-
-  /* background-color: black; */
-  /* color: white; */
+.header{
+  color: #7d5bed;
+  font-size: 25px;
 }
 
-
-
-
-.header {
-  height: 3rem;
-  /* color: #7d5bed; */
-  color:   #007bff;
-  ;
-  /* background-color: #c92828; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  font-weight: 900;
-}
-
-.input {
+.input{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-input {
-  margin-top: 4px;
-  padding: 8px;
-  width: 320px;
-  border-radius: 5px;
-  border-color: white;
-
-}
-.serch-btn{
-  margin-bottom:10px ;
 }
 
 
 
-.info {
+.info{
   margin: 1rem;
 
   border-radius: 10px;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #363636;
+    border: 2px solid #d6d6d6;
   width: 340px;
-
 }
 
 .profile-img {
@@ -95,7 +59,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px;
-}
+}#7d5bed
 
 .profile-info {
   flex: 1;
@@ -116,7 +80,7 @@ button {
   border-radius: 4px;
   margin-top: 8px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #7d5bed;
   color: #fff;
   transition: background-color 0.3s ease;
 }
@@ -126,39 +90,62 @@ button:hover {
 }
 
 
-
-
-.repos-list h1{
-  background-color: #007bff;
-  font-size: 34px;
-  text-indent: 10px;
-  margin-bottom: 30px;
-
-
-}
-
 .repos-list{
-  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: #363636;
+  border-radius: 10px;
+  width: 80%;
+  max-height: 70%;
+  /* overflow: auto; */
+  color: #d6d6d6;
+  font-family: 'Inter', sans-serif;
 }
-.repos-list ul{
-  margin-left: 10px;
+.repohead{
+   display: flex;
+   justify-content: space-between;
+   margin: 10px;
+   color: #7d5bed;
 
 }
+.repo-data{
+  background-color: white;
+  background-color: #363636;
 
-.repos-list ul li h1{
-  margin-left: 10px;
 
-  margin-bottom: 5px;
-  word-wrap: break-word; 
+  width: 100%;
+  max-height: 30%;
+  overflow: auto;
+  color: #d6d6d6;
+  font-family: 'Inter', sans-serif;
+}
+
+.repo-data::-webkit-scrollbar {
+/* display: none;  */
+}
+
+.repo-data ul {
+  margin-left:40px ;
+}
+.repo-data ul li{
+  margin-bottom:20px ;
+  border: 2px sold black;
+  /* width: 20px; */
+}
+.repo-data ul li h3{
+   width: 100%;
+}
+
+.repo-link{
+  width: 10%;
 
 }
-.repos-list ul li a{
-  margin-left: 10px;
+/* .mts{
+  width: 20px;
+} */
 
-  word-wrap: break-word; 
-  font-size: 22px;
-}
-.repos-list ul li{
-   margin-bottom: 30px;
-   text-decoration: none;
+.like-info{
+  /* border: 2px solid black; */
+  width: 270px;
+
 }

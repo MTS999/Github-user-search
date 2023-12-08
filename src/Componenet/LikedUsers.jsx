@@ -33,7 +33,7 @@ export default function LikedUsers(props) {
     return (
         <>
             {userData && (
-                <div className="info">
+                <div className="info like-info">
                     {/* <img src={userData.avatar_url} alt={userData.name} /> */}
                     <div className="profile-img">
 

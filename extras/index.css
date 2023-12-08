@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Tomorrow&display=swap');
+
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+
+  /* background-color: black; */
+  /* color: white; */
+}
+
+
+
+
+.header {
+  height: 3rem;
+  /* color: #7d5bed; */
+  color:   #007bff;
+  ;
+  /* background-color: #c92828; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-input {
+  margin-top: 4px;
+  padding: 8px;
+  width: 320px;
+  border-radius: 5px;
+  border-color: white;
+
+}
+.serch-btn{
+  margin-bottom:10px ;
+}
+
+
+
+.info {
+  margin: 1rem;
+
+  border-radius: 10px;
+  background-color: #fff;
+  width: 340px;
+
+}
+
+.profile-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-img img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 135px;
+  min-width: 111px;
+  height: auto;
+  border-radius: 50%;
+}
+
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+
+
+.profile-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin-bottom: 6px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+.repos-list h1{
+  background-color: #007bff;
+  font-size: 34px;
+  text-indent: 10px;
+  margin-bottom: 30px;
+
+
+}
+
+.repos-list{
+  margin-left: 5px;
+}
+.repos-list ul{
+  margin-left: 10px;
+
+}
+
+.repos-list ul li h1{
+  margin-left: 10px;
+
+  margin-bottom: 5px;
+  word-wrap: break-word; 
+
+}
+.repos-list ul li a{
+  margin-left: 10px;
+
+  word-wrap: break-word; 
+  font-size: 22px;
+}
+.repos-list ul li{
+   margin-bottom: 30px;
+   text-decoration: none;
+}
